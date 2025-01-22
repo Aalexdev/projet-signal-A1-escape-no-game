@@ -10,7 +10,3 @@ Or, cette question peut être inutile car le projet stipule
 > Cependant une question cruciale reste en suspens : en admettant que vous puissiez générer votre signal sonore par-dessus les communications captées par le micro, comment extraire le message caché du signal final ?
 
 Nous supposerons ainsi que le micro fasse parti des rare cas ayant uneplage supérieur à celle de l'oreil humaine.
-
-Dans ce cas, quelle est sa plage ?
-
-Nous pouvons 

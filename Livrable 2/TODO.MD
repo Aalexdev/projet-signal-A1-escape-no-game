@@ -4,14 +4,14 @@
 - [x] Plage des fréquences d'un micro
 - [x] Comment extraire le message caché du signal final
 
-- [ ] Schéma de filtre analogiques
+- [x] Schéma de filtre analogiques
   - [ ] Critères
-  - [ ] Filtres
+  - [x] Filtres
   - [ ] Caractéristiques
   - [ ] Justification
 
-- [ ] Fonction de transfert du circuit
-  - [ ] Étude du module en fonction de la plusation $\omega$
+- [x] Fonction de transfert du circuit
+  - [x] Étude du module en fonction de la plusation $\omega$
   - [ ] Déduire la fréquence de raisonance du circuit et son facteur de qualité $Q$
 
 - [ ] Justifier le dimensionnement des composants pour une meilleure détection du signal
