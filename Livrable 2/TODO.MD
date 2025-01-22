@@ -1,8 +1,8 @@
 
 ## Filtrage analogique
 
-- [ ] Plage des fréquences d'un micro
-- [ ] Comment extraire le message caché du signal final
+- [x] Plage des fréquences d'un micro
+- [x] Comment extraire le message caché du signal final
 
 - [ ] Schéma de filtre analogiques
   - [ ] Critères
@@ -22,5 +22,5 @@
   - [ ] Tracer le diagramme de Bode de cette fonction
 
 - [ ] Reproduir le schéma du filtre sur LTspice
-  - [ ] simuler pour obtenir le diagramme de Bode
+  - [ ] Simuler pour obtenir le diagramme de Bode
   - [ ] Faire varier les fréquences et le grandeurs de composants et comparer avec l'étude théorique
