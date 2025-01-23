@@ -5,7 +5,7 @@
 - [x] Comment extraire le message caché du signal final
 
 - [x] Schéma de filtre analogiques
-  - [ ] Critères
+  - [x] Critères
   - [x] Filtres
   - [ ] Caractéristiques
   - [ ] Justification
