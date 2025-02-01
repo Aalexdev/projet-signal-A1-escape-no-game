@@ -1,0 +1,51 @@
+
+# Message = "Save your favorite articles to read offline, sync your reading lists across devices and customize your reading experience with the official Wikipedia app. "
+
+Message = 'A'
+
+BIT_PER_TRANSMIT = 8
+FREQUENCY_BOUNDS = (100, 2000)
+BIT_FREQUENCIES = np.linspace(FREQUENCY_BOUNDS[0], FREQUENCY_BOUNDS[1], BIT_PER_TRANSMIT)
+
+FREQUENCY = 10
+PERIOD = 1/FREQUENCY
+
+SAMPLE_FREQUENCY = 44100
+T = np.linspace(0, PERIOD, int(SAMPLE_FREQUENCY * PERIOD))
+
+
+def get_char_signal(c):
+    signal = np.zeros_like(T)
+
+    bits = format(ord(c), '08b')
+    print(bits)
+    for i in range(0, len(bits)):
+        b = bits[i]
+        if b == '0': continue
+
+        signal += np.sin(2 * np.pi * BIT_FREQUENCIES[i] * T)
+
+    return signal
+
+
+def encode_message(M):
+    signal = []
+    for c in M:
+        s = get_char_signal(c)
+        signal.extend(s)
+    return signal
+
+
+s = encode_message(Message)
+plt.plot(np.tile(T, len(Message)), s)
+plt.show()
+
+f, Pxx_den = sig.periodogram(s, SAMPLE_FREQUENCY)
+
+plt.semilogy(f, np.log1p(Pxx_den))
+# plt.plot(np.tile(T, len(Message)), np.log1p(s))
+plt.xlim(FREQUENCY_BOUNDS[0]-100, FREQUENCY_BOUNDS[1]+100)
+# plt.show()
+plt.show()
+# sd.play(s)
+# sd.wait()
