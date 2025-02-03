@@ -23,10 +23,10 @@ class Submiter:
         self.notes = []
         self.populate_notes()
 
-        self.sync_sequence()
+        self.call_sequence()
         self.start_streaming()
     
-    def sync_sequence(self):
+    def call_sequence(self):
         # Aquire constants
         period = 1/self.variables["data_frequency"]
         sampling_frequency = self.variables["sampling_frequency"]
@@ -39,7 +39,6 @@ class Submiter:
         low = np.sin(2 * np.pi * t * carrier_range[0])
         high = np.sin(2 * np.pi * t * carrier_range[1])
 
-
         with sd.OutputStream(samplerate=sampling_frequency, channels=1, blocksize=1024) as s:
             s.start()
 
@@ -49,19 +48,6 @@ class Submiter:
             
             for i in range(self.variables["sync_transition_duration"]):
                 s.write(low)
-            
-            arity = self.variables["arity"]
-            bits = [int(i) for i in format(arity, "08b")]
-
-            for b in bits:
-                if b == 0:
-                    s.write(low)
-                else:
-                    s.write(high)
-
-            for i in range(self.variables["sync_transition_duration"]):
-                s.write(low)
-
 
     def populate_notes(self):
         max_frequency = self.variables["data_frequency"]
@@ -129,6 +115,8 @@ class Submiter:
         carrier_frequency = (carrier_range[0] + carrier_range[1])/2
         frequency_deviation = carrier_range[0] - carrier_frequency
 
+        spacing = np.zeros(note_samples, dtype=np.float32)
+
         print("[Transmiting] : ", end='')
 
         # Streaming out the message
@@ -174,6 +162,7 @@ class Submiter:
 
                 # Send the array to the stream
                 s.write(signal)
+                s.write(spacing)
             
             # Ensure the stream has finished
             s.stop()
